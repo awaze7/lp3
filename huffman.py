@@ -13,7 +13,7 @@ class Node:
         
          # tree direction (0/1) 
         self.huff = ''
-
+    #This method is used to compare two nodes based on their frequencies. It's used for comparison when adding nodes to the priority queue.
     def __lt__(self, other):
         return self.freq < other.freq
 

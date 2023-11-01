@@ -39,7 +39,6 @@ def solveNQUtilapproach1(board, col):
  
 
 
-
 def printSolution(board):
     for i in range(N):
         for j in range(N):
@@ -75,16 +74,22 @@ def solveNQUtilapproach2(board, col):
 
 def solveNQ(N):
     board1=[[0 for x in range(N)] for x in range(N)]
+    
+     # Place the first queen at (0, 0)
+    first_queen_col = 0
+    board1[0][first_queen_col] = 1 #and then pass solveNQUtilapproach1(board1, first_queen_col+1)
+    
+    ld[0-first_queen_col+N-1]=rd[0+first_queen_col]=cl[0]=1
     board2=board1
 
-    if (solveNQUtilapproach1(board1, 0) == False): # TC:O(N!*N) SC:O(N)
-        printf("Solution does not exist")
+    if (solveNQUtilapproach1(board1, first_queen_col+1) == False): # TC:O(N!*N) SC:O(N)
+        print("Solution does not exist")
         return False
     print("Using approach 1: ")
     printSolution(board1)
 
-    if (solveNQUtilapproach2(board2, 0) == False): # TC:O(N!) SC:O(N)
-        printf("Solution does not exist")
+    if (solveNQUtilapproach2(board2, first_queen_col+1) == False): # TC:O(N!) SC:O(N)
+        print("Solution does not exist")
         return False
 
     print("\nUsing approach 2: ")
@@ -99,7 +104,5 @@ if __name__ == '__main__':
 
     rd = [0] * N * 2
     
-    cl = [0] * N * 2
+    cl = [0] * N * 2 #to track rows
     solveNQ(N)
-
-   

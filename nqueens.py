@@ -39,58 +39,58 @@ def solveNQUtilapproach1(board, col):
  
 
 
-def printSolution(board):
-	for i in range(N):
-		for j in range(N):
-		    #print(board[i][j], end=" ")
-		    if board[i][j]==1:
-		        print("Q",end=" ")
-		    else:
-		        print(".",end=" ")
-		print()
 
+def printSolution(board):
+    for i in range(N):
+        for j in range(N):
+#             print(board[i][j], end=" ")
+            if board[i][j]==1:
+                print("Q",end=" ")
+            else:
+                print(".",end=" ")
+        print()
 
 
 def solveNQUtilapproach2(board, col):
-	if (col >= N):
-		return True
+    if (col >= N):
+        return True
 
-	for i in range(N):
+    for i in range(N):
 
-		if ((ld[i - col + N - 1] != 1 and
-			rd[i + col] != 1) and cl[i] != 1):
+        if ((ld[i - col + N - 1] != 1 and
+            rd[i + col] != 1) and cl[i] != 1):
 
-			board[i][col] = 1
-			ld[i - col + N - 1] = rd[i + col] = cl[i] = 1
+            board[i][col] = 1
+            ld[i - col + N - 1] = rd[i + col] = cl[i] = 1
 
-			if (solveNQUtilapproach2(board, col + 1)):
-				return True
+            if (solveNQUtilapproach2(board, col + 1)):
+                return True
 
-			board[i][col] = 0 
-			ld[i - col + N - 1] = rd[i + col] = cl[i] = 0
+            board[i][col] = 0 
+            ld[i - col + N - 1] = rd[i + col] = cl[i] = 0
 
-	return False
+    return False
 
 
 
 def solveNQ(N):
-	board1=[[0 for x in range(N)] for x in range(N)]
-	board2=board1
-	
-	if (solveNQUtilapproach1(board1, 0) == False): # TC:O(N!*N) SC:O(N)
-		printf("Solution does not exist")
-		return False
-	print("Using approach 1: ")
-	printSolution(board1)
-    	
-	if (solveNQUtilapproach2(board2, 0) == False): # TC:O(N!) SC:O(N)
-		printf("Solution does not exist")
-		return False
-		
-	print("\nUsing approach 2: ")
-	printSolution(board2)	
-	
-	return True
+    board1=[[0 for x in range(N)] for x in range(N)]
+    board2=board1
+
+    if (solveNQUtilapproach1(board1, 0) == False): # TC:O(N!*N) SC:O(N)
+        printf("Solution does not exist")
+        return False
+    print("Using approach 1: ")
+    printSolution(board1)
+
+    if (solveNQUtilapproach2(board2, 0) == False): # TC:O(N!) SC:O(N)
+        printf("Solution does not exist")
+        return False
+
+    print("\nUsing approach 2: ")
+    printSolution(board2)
+
+    return True
 
 
 if __name__ == '__main__':

@@ -1,12 +1,15 @@
 class Item:
-    def __init__(self, profit, weight):
+    def __init__(self, name, profit, weight):
+        self.name = name
         self.profit = profit
         self.weight = weight
-
+        self.fract=0.0
+        
 def fractionalKnapsack(W, arr):
 
     arr.sort(key=lambda x: (x.profit / x.weight), reverse=True)
-
+    
+    knapsack=[]
     finalvalue = 0.0
 
     for item in arr:
@@ -14,12 +17,16 @@ def fractionalKnapsack(W, arr):
         if item.weight <= W:
             W -= item.weight
             finalvalue += item.profit
+            knapsack.append(item)
 
         else:
+            fraction=W / item.weight
             finalvalue += item.profit * W / item.weight
+            item.fract=fraction
+            knapsack.append(item)
             break
 
-    return finalvalue
+    return finalvalue,knapsack
 
 
 def main():
@@ -31,12 +38,19 @@ def main():
     
     arr = []
     for i in range(num_items):
+        name="item "+str(i+1)
         profit = int(input(f"Enter the profit for item {i+1}: "))
         weight = int(input(f"Enter the weight for item {i+1}: "))
-        arr.append(Item(profit, weight))
+        arr.append(Item(name,profit, weight))
     
-    max_val = fractionalKnapsack(W, arr)
-    print(f"Maximum total profit in the knapsack: {max_val}")
+    max_val,knapsack = fractionalKnapsack(W, arr)
+    print(f"Total value of the knapsack: {max_val}")
+    
+    for item in knapsack:
+        if item.fract==0:
+            print(f"{item.name} - 1.00")
+        else:
+            print(f"{item.name} - {item.fract:.2f}")
 
 if __name__ == "__main__":
     main()

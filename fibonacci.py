@@ -4,11 +4,13 @@ def fibonacciRec(n):
     
     return fibonacciRec(n - 1) + fibonacciRec(n - 2)
 
-def fibonacciRec(n):
-    if n == 0 or n == 1:
-        return n
+def fibonacciIter(n):
+    f = [0, 1]
     
-    return fibonacciRec(n - 1) + fibonacciRec(n - 2)
+    for i in range(2,n+1):
+        f.append(f[i-1]+f[i-2])
+    
+    return f[n]
 
 def fibonacciIter2(n): 
     if n<=1:

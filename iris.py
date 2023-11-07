@@ -85,6 +85,24 @@ print(classification_report(train_y, train_labels))
 
 
 
+#Precision: Precision measures the accuracy of positive predictions.
+#It's the ratio of true positives to the sum of true positives and false positives. 
+#A high precision indicates that when the model predicts a positive class, it's likely to be correct.
+#  TP/(TP+FP)
+
+#Recall: Recall (or sensitivity) measures the ability of the model to identify all relevant instances. 
+#It's the ratio of true positives to the sum of true positives and false negatives. 
+#A high recall indicates that the model can find most of the positive instances.
+#TP/(TP+FN)
+
+
+#F1-Score: The F1-Score is the harmonic mean of precision and recall.
+#It provides a balance between precision and recall. 
+#It's useful when you want to consider both false positives and false negatives.
+# (2×precision×recall) / (precision+recall)
+
+#Support: Support is the number of actual occurrences of each class in the dataset.
+#It's the number of samples for each class.
 
 
 
